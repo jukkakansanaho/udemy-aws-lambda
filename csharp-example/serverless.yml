@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: hello-world-python
+service: csharp-example
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -22,11 +22,8 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: python2.7
-  profile: <aws-profile>
-  region: <aws-region>
-  memorySize: 512
-  timeout: 2
+  runtime: dotnetcore3.1
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -51,22 +48,19 @@ provider:
 #  environment:
 #    variable1: value1
 
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.py
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.py
-#    - exclude-me-dir/**
+package:
+  individually: true
 
 functions:
-  hello-short-timeout:
-    handler: handler.hello
-  hello-long-timeout:
-    handler: handler.hello
-    memorySize: 256
-    timeout: 6
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+
+    # you can add packaging information here
+    package:
+      artifact: bin/Release/netcoreapp3.1/hello.zip
+    #  exclude:
+    #    - exclude-me.js
+    #    - exclude-me-dir/**
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: hello-world-python
+service: python-example-environment-variables
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -25,31 +25,11 @@ provider:
   runtime: python2.7
   profile: <aws-profile>
   region: <aws-region>
-  memorySize: 512
-  timeout: 2
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+  # you can define service wide environment variables here
+  environment:
+    variable1: value1
+    variable2: value2
+    FIRST_NAME: 'John'
 
 # you can add packaging information here
 #package:
@@ -61,12 +41,12 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello-short-timeout:
+  hello-env-john:
     handler: handler.hello
-  hello-long-timeout:
+  hello-env-marc:
     handler: handler.hello
-    memorySize: 256
-    timeout: 6
+    environnment:
+      FIRST_NAME: 'Marc'
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

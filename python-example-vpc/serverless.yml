@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: hello-world-python
+service: python-example-vpc
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -25,48 +25,17 @@ provider:
   runtime: python2.7
   profile: <aws-profile>
   region: <aws-region>
-  memorySize: 512
-  timeout: 2
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.py
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.py
-#    - exclude-me-dir/**
+  vpc:
+    securityGroupIds:
+      - securityGroupId1
+      - securityGroupId2
+    subnetIds:
+      - subnetId1
+      - subnetId2
 
 functions:
-  hello-short-timeout:
+  hello-vpc:
     handler: handler.hello
-  hello-long-timeout:
-    handler: handler.hello
-    memorySize: 256
-    timeout: 6
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
