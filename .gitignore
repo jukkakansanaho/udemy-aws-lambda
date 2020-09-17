@@ -1,0 +1,8 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Ignore Mac
+.DS_Store
+
+# Misc
+cli_commands.py
