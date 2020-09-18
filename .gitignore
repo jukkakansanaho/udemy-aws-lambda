@@ -6,3 +6,7 @@
 
 # Misc
 cli_commands.py
+
+# package directories
+node_modules
+jspm_packages
